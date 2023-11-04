@@ -1,93 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-​
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Dashboard</title>
+    link 
 </head>
+
 <body>
     <header class="container"></header>
     <h1>Weather Dashboard</h1>
-
+    
     <!-- form for user to search city -->
     <form id="searchForm">
         <h2>Search For a City</h2>
         <input type="text" id="cityInput" placeholder="Enter city name" required>
-        <button type="submit" class=>Search</button>
+        <input type="text" id="stateInput" placeholder="Enter state " required>
+        <button id="btnWeather" class="btn btn-success">Get Weather</button>
+
+        <!-- <button type="submit">Search</button> -->
     </form>
 
     <div id="result"></div>
 
-    <script>
-        document.getElementById('searchForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            const cityName = document.getElementById('cityInput').value;
-            getCoordinates(cityName);
-        });
-
-        function getCoordinates(cityName) {
-            const apiUrl = `https://api.openweathermap.org/data/3.0/onecall?lat={lat}&lon={lon}&exclude={part}&appid=f323762659d7f689219c2c868b844fc0`;
-
-            fetch(apiUrl)
-                .then(response => response.json())
-                .then(data => {
-                    if (data && data.length > 0) {
-                        const latitude = data[0].lat;
-                        const longitude = data[0].lon;
-                        displayCoordinates(latitude, longitude);
-                    } else {
-                        displayError('Could not find coordinates for the provided city.');
-                    }
-                })
-                .catch(error => displayError(`Error fetching data: ${error}`));
-        }
-
-        function displayCoordinates(latitude, longitude) {
-            document.getElementById('result').innerHTML = `Latitude: ${latitude}, Longitude: ${longitude}`;
-        }
-
-        function displayError(message) {
-            document.getElementById('result').innerHTML = `<p style="color: red;">${message}</p>`;
-        }
-
-// get city from user
-var txtCity = document.getElementById("city");
-
-
-// get weather button
-var btnWeather = document.getElementById("btnWeather");
-btnWeather.addEventListener("click", getWeather);
-
-  // returns geolocation based on city name and api key
-  // api.openweathermap.org/data/2.5/forecast?q={city name}&appid={API key}
-function getWeather() {
-  debugger;
-  var apiKey = "f323762659d7f689219c2c868b844fc0";
-  var city = txtCity.value;
-
-
-   <div>
-      <input id="city" type="text" placeholder="Enter City Name" style="width: 100%;">
-      <button id="btnWeather" class="btn btn-success">Get Weather</button></div>
-
-        // //   <!-- Current Weather Conditions -->
-        //     <div id="currentWeather"></div>
-                
-        //     // <!-- 5-day Forecast --> 
-
-        //             div id="forecast"></div>
-        
-     
-    </div> 
-
     
-  // // !-- Search History -->
-};  // <div id="searchHistory"></div>
-    </script>
 
-
-
-     </script src="./script/script.js"></script>
+     <script src="./assets/js/script.js"></script>
+    
 </body>
 </html>
