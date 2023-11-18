@@ -1,3 +1,15 @@
-.card {
-    /* display: none; */
+/* Update styles for the weather cards */
+.weather-card {
+  width: 200px; /* Adjust the width */
+  padding: 10px;
+  margin: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Update styles for the icon */
+.weather-icon {
+  width: 50px; /* Adjust the width of the icon */
+  height: 50px; /* Adjust the height of the icon */
 }
