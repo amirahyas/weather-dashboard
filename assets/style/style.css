@@ -6,10 +6,23 @@
   border: 1px solid #ccc;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  
 }
+
+#forecast {
+  display: flex;
+  justify-content: space-around; /* Adjust alignment as needed */
+  flex-wrap: nowrap; /* Prevent cards from wrapping */
+  margin-top: 20px; /* Add some top margin for spacing */
+}
+
 
 /* Update styles for the icon */
 .weather-icon {
   width: 50px; /* Adjust the width of the icon */
   height: 50px; /* Adjust the height of the icon */
 }
+
+
+
+

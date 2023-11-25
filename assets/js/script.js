@@ -66,7 +66,7 @@ function getWeather() {
     var state = txtState.value;
     
 
-    fetch('https://api.openweathermap.org/geo/1.0/direct?q=' + city + ',' + state + ',840&limit=1&appid=' + apiKey)
+    fetch('https://api.openweathermap.org/geo/1.0/direct?q=' + city + ',' + state + ',&appid=' + apiKey)
         .then(response => response.json())
         .then(answer => {
 
@@ -74,12 +74,11 @@ function getWeather() {
                 const latitude = answer[0].lat;
                 const longitude = answer[0].lon;
 
-                fetch('https://api.openweathermap.org/data/2.5/forecast?lat=' + latitude + '&lon=' + longitude + '&appid=' + apiKey)
+                fetch('https://api.openweathermap.org/data/2.5/forecast?lat=' + latitude + '&lon=' + longitude + '&units=imperial&appid=' + apiKey)
                     .then(response => response.json())
                     .then(data => {
-                        const cardsToDisplay = Math.min(4, data.list.length); // Determine the number of cards to display
 
-                        for (let i = 0; i < cardsToDisplay; i++) {
+                        for (let i = 0; i < data.list.length; i+=8) {
                             let cardCityName = document.getElementById(`cardCityName${i}`);
                             cardCityName.textContent = data.city.name;
 
@@ -137,3 +136,4 @@ function getWeather() {
             }
         })
 }
+
