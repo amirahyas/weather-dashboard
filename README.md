@@ -1,152 +1,37 @@
 # weather-dashboard
-api key 96cb24edd31feeb9ca187be0a352d80d
+This weather dashboard is designed to provide users with current and future weather conditions for a specific city. It allows users to search for a city and view detailed weather information, including the current conditions and a 5-day forecast.
 
+Features
+Search Functionality: Users can search for a city to view its weather information.
+Current Weather Display: Upon searching, users are presented with the city name, date, weather condition icon, temperature, humidity, and wind speed.
+5-Day Forecast: A forecast for the next 5 days is displayed, showcasing the date, weather condition icon, temperature, wind speed, and humidity.
+Search History: Cities searched for are added to the search history for easy access.
+City Selection from History: Clicking on a city in the search history presents the user with current and future weather conditions for that city.
+Usage
+To use the weather dashboard:
 
+Open the dashboard.
+Use the search bar to enter the name of the city you want to check the weather for.
+Press the search button or hit enter.
+The current weather conditions and the 5-day forecast for the entered city will be displayed.
+The searched city will be added to the search history.
+To view weather information for a previously searched city, click on the city in the search history.
+Technologies Used
+HTML/CSS
+JavaScript
+Weather API (e.g., OpenWeatherMap)
+Setup
+To set up the weather dashboard:
 
-document.getElementById('searchForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-    const cityName = document.getElementById('cityInput').value;
-    const stateName = document.getElementById('stateInput').value;
-    getCoordinates(cityName,stateName);
+Clone the repository to your local machine.
+Open the index.html file in a web browser.
+Ensure a stable internet connection to fetch weather data from the API.
+Start searching for cities and exploring weather information!
+Contributing
+Contributions are welcome! If you'd like to contribute to this weather dashboard, feel free to fork the repository and submit a pull request.
 
-});
-
-function getCoordinates(cityName,stateName) {
-    var apiKey='f323762659d7f689219c2c868b844fc0'
- const apiUrl = 'https://api.openweathermap.org/geo/1.0/direct?q='+ cityName +','+ stateName +',USA&limit=1&appid='+apiKey;
- 
-
-    fetch(apiUrl)
-        .then(response => response.json())
-        .then(data => {
-            
-            if (data && data.length > 0) {
-                const latitude = data[0].lat;
-                const longitude = data[0].lon;
-
-                fetch ('https://api.openweathermap.org/data/2.5/forecast?lat='+latitude+'&lon='+longitude+'&appid='+apiKey)
-                    .then(response => response.json())
-                    .then(data =>{
-                         
-                        // Inside the fetch request where you get weather data
-                             .then(data => {
-
-                             let city_name = document.getElementById('city_name');
-                                city_name.innerHTML = data.city.name;
-
-
-                                let myDate = document.getElementById('myDate');
-                                myDate.innerHTML = new Date(data.list[0].dt_txt).toLocaleString();
-
-                                let icon = document.getElementById('icon')
-
-                                let temp = document.getElementById('temp');
-                                temp.innerHTML = data.list[0].main.temp + '&deg;F';
-
-
-                                let humidity = document.getElementById('humidity');
-                                humidity.innerHTML = data.list[0].main.humidity + '%';
-
-
-                                let wind_speed = document.getElementById('wind_speed');
-                                wind_speed.innerHTML = data.list[0].wind.speed + 'mph';
-                                
-                                //   Get the weather icon
-                                var img = document.getElementById('icon');
-                                var icon = data.list[0].weather[0].icon;
-                                var description = data.list[0].weather[0].description; // Get weather description (optional)
-
-
-
-
-                                var baseUrl = 'https://openweathermap.org/img/wn/' + icon + '@2x.png';
-                                img.src = source;
-                                var source = baseUrl + icon + '.png';
-
-                                img.src = source;
-                                img.alt = description; // Set alt text for accessibility (optional)
-
-                                //  Move the data forward to the next promise response
-                                return data;
-
-                             }) 
-                                        
-
-                                
-                            
-  
-
-
-                          
-                    })
-
-                    // Cycle through the list
-                    .then(data => {
-
-                        let myData = data;
-
-
-                        let list = data.list;
-
-                        for(let i=0; i<list.length; i++) {
-                            console.log(list[i].dt_txt);
-                        }
-                    
-                        let car = {}
-                        car.engine = 'running'
-                        car.color = 'brown'
-
-                        console.log(car.color);
-
-
-                    });
-
-
-
-                displayCoordinates(latitude, longitude);
-            } else {
-                displayError('Could not find coordinates for the provided city.');
-            }
-        })
-        .catch(error => displayError(`Error fetching data: ${error}`));
-}
-
-function displayCoordinates(latitude, longitude) {
-    document.getElementById('result').innerHTML = `Latitude: ${latitude}, Longitude: ${longitude}`;
-}
-
-function displayError(message) {
-    document.getElementById('result').innerHTML = `
-    <p style="color: red;">${message}</p>`;
-}
-
-// get city and state from user
-var txtCity = document.getElementById("cityInput");
-var txtState = document.getElementById("stateInput");
-
-// get weather button
-var btnWeather = document.getElementById("btnWeather");
-btnWeather.addEventListener("click", getWeather);
-
-if (btnWeather) {
-    btnWeather.addEventListener("click", getWeather);
-}
-
-
-// returns geolocation based on city name and api key
-function getWeather() {
-    var apiKey = "f323762659d7f689219c2c868b844fc0";
-    var city = txtCity.value;
-    var state = txtState.value;
-
-    // Using fetch to get the longitude and latitude.
-    fetch('https://api.openweathermap.org/geo/1.0/direct?q=' + city + ',' + state + ',840&limit=1&appid=' + apiKey)
-        .then(response => response.json())
-        .then(answer => {
-            for (let i = 0; i < answer.length; i++) {
-                console.log("lat = " + answer[i].lat + ", longitude is: " + answer[i].lon);
-            }
-        })
-}
+License
+This project is licensed under the MIT License.
+repo link :https://github.com/amirahyas/weather-dashboard
 
 
