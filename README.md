@@ -33,5 +33,6 @@ Contributions are welcome! If you'd like to contribute to this weather dashboard
 License
 This project is licensed under the MIT License.
 repo link :https://github.com/amirahyas/weather-dashboard
+screenshot: ![Screenshot (9)](https://github.com/amirahyas/weather-dashboard/assets/143109513/7f0dc9d8-2e51-4402-8af8-9f95788c7785)
 
 
